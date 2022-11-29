@@ -1,34 +1,16 @@
 ﻿Console.Clear();
 Console.Write("Введите первое число: ");
-int n = Convert.ToInt32(Console.ReadLine());
+int a = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите второе число: ");
-int m = Convert.ToInt32(Console.ReadLine());
+int b = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите третье число: ");
-int i = Convert.ToInt32(Console.ReadLine());
+int c = Convert.ToInt32(Console.ReadLine());
 
-int max=0;
+int max = a;
 
-if (n>m)
-{    if (n>i)
-        max=n;
-}
-else if (n==m)
-    max=n;
-
-if (m>i)
-{    if (m>n)
-        max=m;
-}
-else if (m==i)
-    max=m;
-
-if (i>n)
-{    if (i>m)
-        max=i;
-}
-else if (i==n)
-    max=i;
+if (b > max) 
+    max = b;
+if (c > max) 
+    max = c;
 
 Console.WriteLine("Наибольшее значение: " + max);
-
-
