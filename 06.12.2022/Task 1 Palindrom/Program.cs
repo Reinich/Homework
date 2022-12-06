@@ -2,7 +2,7 @@
 int n = 5;
 Console.WriteLine("Вводите числа: ");
 
-string? num = Convert.ToString(Console.ReadLine());
+string? num = Console.ReadLine();
 int count = 0;
 
 for (int i = 0; i < (n/2); i++)
