@@ -2,14 +2,12 @@
 int n = 5;
 Console.WriteLine("Вводите числа: ");
 
-int numbers = Convert.ToInt32(Console.ReadLine());
-string b = numbers.ToString();
-
+string? num = Convert.ToString(Console.ReadLine());
 int count = 0;
 
 for (int i = 0; i < (n/2); i++)
 {
-    if (b[i]==b[n-i-1]) count++;
+    if (num?[i]==num?[n-i-1]) count++;
     else 
     {
         Console.WriteLine("Это число не палиндром");
