@@ -18,10 +18,10 @@ int ReleaseArray(int[] array)
 
 
 Console.Clear();
-Console.Write("Введите кол-во элементов массива: ");
+Console.Write("Введите количество элементов массива: ");
 int n = Convert.ToInt32(Console.ReadLine());
 int[] array = new int[n];
 InputArray(array);
 Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
-Console.Write("Количество четных чисел в массиве = ");
+Console.Write("Количество чётных чисел в массиве = ");
 Console.WriteLine(ReleaseArray(array));

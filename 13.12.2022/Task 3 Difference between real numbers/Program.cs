@@ -4,13 +4,13 @@ void InputArray(double[] array)
 {
     for (int i = 0; i < array.Length; i++)
     {
-        array[i] = new Random().Next(-10, 10) + new Random().NextDouble();// Честно спёрто
+        array[i] = new Random().Next(-10, 10) + new Random().NextDouble();//Честно стырино
         array[i] = Math.Round(array[i], 3);
     }
 
     // for(int i = 0; i < array.Length; i++)
     // {
-    // array[i] = Convert.ToDouble(new Random().Next(-100, 101)/10.0);              // Какой вариант лучше?
+    // array[i] = Convert.ToDouble(new Random().Next(-100, 101)/10.0);              // Подскажите, какой вариант лучше? 1 (выше) или 2 (тот, что в комментарии)?
     // }
 
 }

@@ -17,9 +17,9 @@ int ReleaseArray(int[] array)
 }
 
 Console.Clear();
-Console.Write("Введите количество элемнетов - ");
+Console.Write("Введите количество элементов - ");
 int n = Convert.ToInt32(Console.ReadLine());
 int[] array = new int[n];
 InputArray(array);
 Console.WriteLine($"Начальный массив: [{string.Join("; ", array)}]");
-Console.Write("Сумма чисел на нечетных позициях = " + ReleaseArray(array));
+Console.Write("Сумма чисел на нечётных позициях = " + ReleaseArray(array));
