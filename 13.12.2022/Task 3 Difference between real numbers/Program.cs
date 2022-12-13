@@ -4,7 +4,7 @@ void InputArray(double[] array)
 {
     for (int i = 0; i < array.Length; i++)
     {
-        array[i] = new Random().Next(-10, 10) + new Random().NextDouble();//Честно стырино
+        array[i] = new Random().Next(-10, 10) + new Random().NextDouble();// Честно стырила
         array[i] = Math.Round(array[i], 3);
     }
 
