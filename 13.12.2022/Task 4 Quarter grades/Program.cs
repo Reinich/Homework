@@ -25,7 +25,7 @@ int[] ArrayOdd(int[] array)
     return arrayOdd;
 }
 
-int[] InputArrayEven(int[] array, int[] array2)         // Наверное, можно было бы решить за два метода, но захотелось попробовать двойных входных данных
+int[] InputArrayEven(int[] array, int[] array2)         // Я не искала легких путей, есть вторая папка с более простым решением
 {
     int j = 0;
     for (int i = 0; i < array.Length; i++)
