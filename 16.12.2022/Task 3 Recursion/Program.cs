@@ -1,54 +1,31 @@
-﻿int Factorial(int n)
+﻿void rec(string s2, string c)
 {
-    if (n == 1) return n;
-    else return n * Factorial(n - 1);
-}
-
-int[] Move(int[] firstArray)
-{
-    int[] temporaryArray = new int[firstArray.Length];
-    // for (int i = 0; i < temporaryArray.Length; i++)
-    //     temporaryArray[i] = firstArray[i];
-    Console.WriteLine($"Начальный массив: [{string.Join(", ", firstArray)}]");
-    int l = temporaryArray.Length;
-    
-    if (l < 1) return firstArray;
+    string s1;
+    int i;
+    if (s2.Length == 0)
+        Console.WriteLine(c);
     else
     {
-        for (int j = 0; j < l - 1; j++)
+        for (i = 0; i < s2.Length; i++)
         {
-            for (int i = 0; i < l - 1; i++)
-            {
-                if (i < l / 2)
-                {
-                    temporaryArray[i - 1] = firstArray[i];
-
-                }
-                else
-                {
-                    temporaryArray[l - i - 1] = firstArray[i];
-
-                }
-            }
-            Console.WriteLine($"Сдвиг: [{string.Join(", ", temporaryArray)}]");
+            c += s2[i];
+            s1 = s2;
+            s1 = s1.Remove(i, 1);
+            rec(s1, c);
+            c = c.Remove(c.Length - 1, 1);
         }
     }
-
-
-
-    return firstArray;
-    // return Move(temporaryArray, count + 1);
-
 }
 
 
-
-
-
-// int[] firstArray = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
-// int n = ;
-int[] firstArray = new int[3] { 1, 2, 3 };
-Console.WriteLine($"{Move(firstArray)}");
-
-
-
+Console.Clear();
+Console.Write("Введите символы или цифры для перестановки: ");
+string? s = Console.ReadLine(), c, s2;
+for(int i = 0; i < s.Length; i++)
+{
+    c = s[i].ToString();
+    s2 = s;
+    s2 = s2.Remove(i, 1);
+    //Console.WriteLine(s2);
+    rec(s2, c);
+}

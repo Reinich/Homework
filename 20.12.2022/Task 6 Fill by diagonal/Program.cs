@@ -1,4 +1,7 @@
-﻿void PrintMatrix(int[,] matrix)
+﻿// Объяснение: Если Вы распишете каждое значение на какой позиции оно стоит, то числа, которые стоят на одной диагонали имеют одинаковую сумма (i + j)
+
+
+void PrintMatrix(int[,] matrix)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
