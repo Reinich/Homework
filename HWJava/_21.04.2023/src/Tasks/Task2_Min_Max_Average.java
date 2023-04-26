@@ -14,7 +14,7 @@ public class Task2_Min_Max_Average {
         System.out.println(ArrayList);
         System.out.printf("min - %d\n", Collections.min(ArrayList));
         System.out.printf("max - %d\n", Collections.max(ArrayList));
-        System.out.printf("average - %d\n", AverageList(ArrayList));
+        System.out.printf("average - %.2f\n", averageList(ArrayList));
 
     }
     static List<Integer> createList(int capacity){
@@ -23,8 +23,8 @@ public class Task2_Min_Max_Average {
         for (int i = 0; i < capacity; i++) {list.add(random.nextInt(0,10));}
         return list;
     }
-    static int AverageList(List<Integer> list){
-        int average = 0;
+    static double averageList(List<Integer> list){
+        double average = 0;
         for (int i = 0; i < list.size(); i++) {
             average += list.get(i);
         }
