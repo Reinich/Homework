@@ -15,9 +15,11 @@ public class Task2_Queue_Methods {
         print(queue);
         enqueue(queue);
         print(queue);
-        dequeue(queue);
+        int removedNum = dequeue(queue);
+        System.out.println(removedNum);
         print(queue);
-        first(queue);
+        int firstNum = first(queue);
+        System.out.println(firstNum);
         print(queue);
 
     }
@@ -26,12 +28,13 @@ public class Task2_Queue_Methods {
         System.out.print("Введите значение: ");
         list.addLast(sc.nextInt());
     }
-    static void dequeue(Deque<Integer> list){
-        System.out.println(list.remove());
+    static int dequeue(Deque<Integer> list){
+        int removedEl = list.remove();
+        return removedEl;
     }
-    static void first(Deque<Integer> list){
-        System.out.println(list.peek());
-        
+    static int first(Deque<Integer> list){
+        int firstPeek = list.peek();
+        return firstPeek;
     }
     static void print(Deque<Integer> list){
         ListIterator<Integer> iterNext = (ListIterator<Integer>) list.iterator();

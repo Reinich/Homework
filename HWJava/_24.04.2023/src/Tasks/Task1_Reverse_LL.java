@@ -22,9 +22,19 @@ public class Task1_Reverse_LL {
         }
         System.out.println();
         System.out.println("->");
+        LinkedList<Integer> res = reverseLL(list);
+        ListIterator<Integer> iterNext2 = res.listIterator();
+        while (iterNext2.hasNext()){
+            System.out.printf("%d ", iterNext2.next());
+        }
+
+    }
+    static LinkedList<Integer> reverseLL(LinkedList<Integer> list){
+        LinkedList<Integer> res = new LinkedList<>();
         ListIterator<Integer> iterPrev = list.listIterator(list.size());
         while (iterPrev.hasPrevious()){
-            System.out.printf("%d ", iterPrev.previous());
+            res.add(iterPrev.previous());
         }
+        return res;
     }
 }

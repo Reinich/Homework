@@ -17,27 +17,26 @@ public class Task4_Task2_w_Array {
         enqueue(queue);
         print(queue);
         System.out.println();
-        dequeue(queue);
+        int removedNum = dequeue(queue);
+        System.out.println(removedNum);
         print(queue);
         System.out.println();
-        first(queue);
+        int peekNum = first(queue);
+        System.out.println(peekNum);
         print(queue);
-
-
-
-
-
     }
     static void enqueue(Deque<Integer> list){
         Scanner sc = new Scanner(System.in);
         System.out.print("Введите значение: ");
         list.addLast(sc.nextInt());
     }
-    static void dequeue(Deque<Integer> list){
-        System.out.println(list.remove());
+    static int dequeue(Deque<Integer> list){
+        int removedFirst = list.removeFirst();
+        return removedFirst;
     }
-    static void first(Deque<Integer> list){
-        System.out.println(list.peek());
+    static int first(Deque<Integer> list){
+        int peekFirst = list.peekFirst();
+        return peekFirst;
     }
     static void print(Deque<Integer> list){
         ListIterator<Integer> iterNext = (ListIterator<Integer>) list.iterator();
