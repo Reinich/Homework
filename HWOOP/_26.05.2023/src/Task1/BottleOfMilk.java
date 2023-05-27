@@ -27,15 +27,4 @@ public class BottleOfMilk extends Product{
     public String displayInfo() {
         return String.format("%s %s - %.2f р. - объемом %.2f мл - жирность: %.1f",name.substring(0,1).toUpperCase() + name.substring(1), brand, price, volume, fatContent);
     }
-
-    public static void getBottleOfMilk(double fat){
-        BottleOfMilk bottleOfMilkRes = VendingMachine.getBottleOfMilk(fat);
-        if (bottleOfMilkRes != null){
-            System.out.println("Вы купили: ");
-            System.out.println(bottleOfMilkRes.displayInfo());
-        }else {
-            System.out.println("Такой бутылки нет в наличии");
-        }
-    }
-
 }

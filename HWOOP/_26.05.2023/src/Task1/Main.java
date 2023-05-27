@@ -38,11 +38,11 @@ public class Main {
 
 
         VendingMachine machine = new VendingMachine(products);
-        BottleOfWater.getBottleOfWater(5000);
-        BottleOfMilk.getBottleOfMilk(2);
-        Chocolate.getChocolate("темный");
-        Chips.getChips("краб");
-        Bar.getBar(350);
+        VendingMachine.getBottleOfWaterRes(5000);
+        VendingMachine.getBottleOfMilkRes(2);
+        VendingMachine.getChocolateRes("темный");
+        VendingMachine.getChipsRes("краб");
+        VendingMachine.getBarRes(350);
 
     }
     static void printProductList(List<Product> products){

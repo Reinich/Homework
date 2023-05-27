@@ -30,7 +30,6 @@ public class VendingMachine {
         }
         return null;
     }
-
     public static Chocolate getChocolate(String type){
         for (Product product: products){
             if (product instanceof Chocolate){
@@ -61,4 +60,52 @@ public class VendingMachine {
         }
         return null;
     }
+
+
+    public static void getBarRes(int kal){
+        Bar barRes = VendingMachine.getBar(kal);
+        if (barRes != null){
+            System.out.println("Вы купили: ");
+            System.out.println(barRes.displayInfo());
+        }else {
+            System.out.println("Такого батончика нет в наличии");
+        }
+    }
+    public static void getChipsRes(String taste){
+        Chips chipsRes = VendingMachine.getChips(taste);
+        if (chipsRes != null){
+            System.out.println("Вы купили: ");
+            System.out.println(chipsRes.displayInfo());
+        }else {
+            System.out.println("Таких чипсов нет в наличии");
+        }
+    }
+    public static void getChocolateRes(String type){
+        Chocolate chocolateRes = VendingMachine.getChocolate(type);
+        if (chocolateRes != null){
+            System.out.println("Вы купили: ");
+            System.out.println(chocolateRes.displayInfo());
+        }else {
+            System.out.println("Такой шоколадки нет в наличии");
+        }
+    }
+    public static void getBottleOfMilkRes(double fat){
+        BottleOfMilk bottleOfMilkRes = VendingMachine.getBottleOfMilk(fat);
+        if (bottleOfMilkRes != null){
+            System.out.println("Вы купили: ");
+            System.out.println(bottleOfMilkRes.displayInfo());
+        }else {
+            System.out.println("Такой бутылки нет в наличии");
+        }
+    }
+    public static void getBottleOfWaterRes(double volume){
+        BottleOfWater bottleOfWaterRes = VendingMachine.getBottleOfWater(volume);
+        if (bottleOfWaterRes != null){
+            System.out.println("Вы купили: ");
+            System.out.println(bottleOfWaterRes.displayInfo());
+        }else {
+            System.out.println("Такой бутылки нет в наличии");
+        }
+    }
+
 }
