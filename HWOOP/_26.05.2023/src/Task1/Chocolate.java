@@ -20,14 +20,4 @@ public class Chocolate extends Product{
         return String.format("%s %s - %s - %.2f р.", type, name,brand, price);
     }
 
-    public static void getChocolate(String type){
-        Chocolate chocolateRes = VendingMachine.getChocolate(type);
-        if (chocolateRes != null){
-            System.out.println("Вы купили: ");
-            System.out.println(chocolateRes.displayInfo());
-        }else {
-            System.out.println("Такой шоколадки нет в наличии");
-        }
-    }
-
 }

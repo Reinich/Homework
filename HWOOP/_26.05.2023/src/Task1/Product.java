@@ -27,7 +27,7 @@ public class Product {
         this.brand = inputBrand;
     }
     Product(String inputName, double inputPrice){
-        this("nobrand", "noname", 1);
+        this("nobrand", inputName, inputPrice);
     }
     Product(){
         this("noname", 1);
