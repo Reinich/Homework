@@ -1,8 +1,12 @@
 package Task1;
 
+import java.util.Random;
+
 // 20 * 8
 public class Freelancer extends Employee{
 
+
+    private Random random = new Random();
 
     public Freelancer(String name, String surname, int age, double salary) {
         super(name, surname, age, salary);
@@ -10,7 +14,7 @@ public class Freelancer extends Employee{
 
     @Override
     public double calculateSalary() {
-        return salary;
+        return salary*random.nextInt(5,20);
     }
 
     @Override
