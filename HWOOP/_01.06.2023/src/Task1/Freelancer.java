@@ -14,7 +14,7 @@ public class Freelancer extends Employee{
 
     @Override
     public double calculateSalary() {
-        return salary*random.nextInt(5,20);
+        return salary*random.nextInt(10,20)*random.nextInt(5, 8);
     }
 
     @Override
