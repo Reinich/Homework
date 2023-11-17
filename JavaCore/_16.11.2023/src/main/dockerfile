@@ -1,0 +1,5 @@
+FROM bellsoft/liberica-openjdk-debian:latest
+COPY ./java ./src
+RUN mkdir ./out
+RUN javac -sourcepath ./src -d out ./src/app/sample/Main.java
+CMD java -classpath ./out app.sample.Main
