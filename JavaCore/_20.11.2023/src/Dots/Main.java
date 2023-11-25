@@ -133,7 +133,6 @@ public class Main {
 
                     field[i][j] = DOT_HUMAN;
                     if (checkWin(DOT_HUMAN, dot)) {
-                        System.out.println("i " + i + ", j " + j);
                         field[i][j] = DOT_AI;
                         return;
                     }
@@ -259,7 +258,6 @@ public class Main {
             if (field[y][x] == per) {
                 winCount++;
                 if (winCount == WIN_COUNT) {
-                    System.out.println("HorizontalWin");
                     return true;
                 }
             } else {
@@ -282,7 +280,6 @@ public class Main {
             if (field[y][x] == per) {
                 winCount++;
                 if (winCount == WIN_COUNT) {
-                    System.out.println("VerticalWin");
                     return true;
                 }
             } else {
