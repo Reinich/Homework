@@ -4,6 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+import static java.lang.Math.abs;
+
 /*
 3.**** Доработать искусственный интеллект, чтобы он мог блокировать ходы игрока.
 */
@@ -32,7 +34,7 @@ public class Main {
                 if (checkGameState(DOT_HUMAN, "Вы победили!")) {
                     break;
                 }
-                aiTurn();
+                aiTurn(dot);
                 printField();
                 if (checkGameState(DOT_AI, "Победил компьютер!"))
                     break;
@@ -52,13 +54,14 @@ public class Main {
             fieldSizeY = Integer.parseInt(scanner.next());
             System.out.print("Введите количество столбцов: ");
             fieldSizeX = Integer.parseInt(scanner.next());
+            System.out.println();
             field = new char[fieldSizeY][fieldSizeX];
             for (int y = 0; y < fieldSizeY; y++) {
                 for (int x = 0; x < fieldSizeX; x++) {
                     field[y][x] = DOT_EMPTY;
                 }
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Некорреткно введено число.\nПовторите попытку: ");
             initialize();
         }
@@ -113,21 +116,62 @@ public class Main {
         return dot;
     }
 
+
     /**
      * Ход игрока (компьютера)
      */
-    static void aiTurn() {
-        int x;
-        int y;
+    static void aiTurn(int[] dot) {
 
-        do {
-            x = random.nextInt(fieldSizeX);
-            y = random.nextInt(fieldSizeY);
+        for (int i = 0; i < fieldSizeY; i++) {
+            for (int j = 0; j < fieldSizeX; j++) {
+                if (isCellEmpty(j, i)) {
+
+                    field[i][j] = DOT_AI;
+                    if (checkWin(DOT_AI, dot)) {
+                        return;
+                    }
+
+                    field[i][j] = DOT_HUMAN;
+                    if (checkWin(DOT_HUMAN, dot)) {
+                        System.out.println("i " + i + ", j " + j);
+                        field[i][j] = DOT_AI;
+                        return;
+                    }
+                    field[i][j] = DOT_EMPTY;
+                }
+            }
         }
-        while (!isCellEmpty(x, y));
+        for (int j = 0; j < fieldSizeX; j++) {
+            for (int i = 0; i < fieldSizeY; i++) {
 
-        field[y][x] = DOT_AI;
+                if (isCellEmpty(j, i)) {
+
+                    field[i][j] = DOT_AI;
+                    if (checkWin(DOT_AI, dot)) {
+                        return;
+                    }
+
+                    field[i][j] = DOT_HUMAN;
+                    if (checkWin(DOT_HUMAN, dot)) {
+
+                        field[i][j] = DOT_AI;
+                        return;
+                    }
+                    field[i][j] = DOT_EMPTY;
+                }
+            }
+
+        }
+
+        int x = random.nextInt(fieldSizeX);
+        int y = random.nextInt(fieldSizeY);
+        if (isCellEmpty(x, y)) {
+            field[y][x] = DOT_AI;
+        } else {
+            aiTurn(dot);
+        }
     }
+
 
     /**
      * Проверка, является ли ячейка игрового поля пустой
@@ -198,7 +242,7 @@ public class Main {
         if (checkHorizontalWin(dot[0], per)) return true;
         if (checkVerticalWin(dot[1], per)) return true;
         if (checkDiagonalRightWin(per)) return true;
-        if (checkDiagonalLeftWin(per)) return true;
+        if (checkDiagonalLeftWin(per, dot)) return true;
         return false;
     }
 
@@ -211,10 +255,11 @@ public class Main {
      */
     static boolean checkHorizontalWin(int y, char per) {
         int winCount = 0;
-        for (int x = 0; x < fieldSizeY; x++) {
+        for (int x = 0; x < fieldSizeX; x++) {
             if (field[y][x] == per) {
                 winCount++;
                 if (winCount == WIN_COUNT) {
+                    System.out.println("HorizontalWin");
                     return true;
                 }
             } else {
@@ -237,6 +282,7 @@ public class Main {
             if (field[y][x] == per) {
                 winCount++;
                 if (winCount == WIN_COUNT) {
+                    System.out.println("VerticalWin");
                     return true;
                 }
             } else {
@@ -248,17 +294,23 @@ public class Main {
 
     /**
      * Проверка победы по диагонали справа налево
+     *
      * @param per фишка игрока
      * @return
      */
     static boolean checkDiagonalRightWin(char per) {
         int winCount = 0;
-        for (int k = 0; k < fieldSizeY + fieldSizeX; k++) {
-            for (int i = 0; i < fieldSizeY; i++) {
-                for (int j = 0; j < fieldSizeX; j++) {
-                    if (i + j + 1 == k) {
+        for (int y = 0; y < fieldSizeY; y++) {
+            for (int x = 0; x < fieldSizeX; x++) {
+                // если x (столбец) больше или равен количеству выигрышных ячеек
+                if (x >= WIN_COUNT - 1 && y < WIN_COUNT - 1) {
+                    int i = y;
+                    int j = x;
+                    for (int k = 0; k <= abs(y - fieldSizeX) -1; k++) {
                         if (field[i][j] == per) {
                             winCount++;
+                            i++;
+                            j--;
                             if (winCount == WIN_COUNT) {
                                 return true;
                             }
@@ -266,7 +318,24 @@ public class Main {
                             winCount = 0;
                         }
                     }
-
+                }
+                winCount = 0;
+                // Если y (строка) больше или равен количеству выигрышных ячеек
+                if (y >= WIN_COUNT - 1 && x < WIN_COUNT - 1) {
+                    int i = y;
+                    int j = x;
+                    for (int k = 0; k <= x; k++) {
+                        if (field[i][j] == per) {
+                            winCount++;
+                            i--;
+                            j++;
+                            if (winCount == WIN_COUNT) {
+                                return true;
+                            }
+                        } else {
+                            winCount = 0;
+                        }
+                    }
                 }
             }
         }
@@ -275,17 +344,23 @@ public class Main {
 
     /**
      * Проверка победы по диагонали слева направо
+     *
      * @param per фишка игрока
      * @return
      */
-    static boolean checkDiagonalLeftWin(char per) {
+    static boolean checkDiagonalLeftWin(char per, int[] dot) {
         int winCount = 0;
-        for (int k = 0; k < fieldSizeX + fieldSizeY + 1; k++) {
-            for (int i = 0; i < fieldSizeY; i++) {
-                for (int j = 0; j < fieldSizeX; j++) {
-                    if (i - j + fieldSizeY == k) {
+        for (int y = 0; y < fieldSizeY; y++) {
+            for (int x = 0; x < fieldSizeX; x++) {
+                // если x (столбец) больше или равен количеству выигрышных ячеек
+                if (x >= WIN_COUNT - 1 && y >= WIN_COUNT - 1) {
+                    int i = y;
+                    int j = x;
+                    for (int k = 0; k < x; k++) {
                         if (field[i][j] == per) {
                             winCount++;
+                            i--;
+                            j--;
                             if (winCount == WIN_COUNT) {
                                 return true;
                             }
@@ -293,7 +368,24 @@ public class Main {
                             winCount = 0;
                         }
                     }
-
+                }
+                winCount = 0;
+                // Если y (строка) больше или равен количеству выигрышных ячеек
+                if (y < WIN_COUNT - 1 && x < WIN_COUNT - 1) {
+                    int i = y;
+                    int j = x;
+                    for (int k = 0; k < abs(x - fieldSizeX )- 1; k++) {
+                        if (field[i][j] == per) {
+                            winCount++;
+                            i++;
+                            j++;
+                            if (winCount == WIN_COUNT) {
+                                return true;
+                            }
+                        } else {
+                            winCount = 0;
+                        }
+                    }
                 }
             }
         }
