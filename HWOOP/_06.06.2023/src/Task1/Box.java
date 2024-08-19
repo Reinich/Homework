@@ -26,12 +26,9 @@ public class Box <T extends Fruit>{
         sizeBoxFruit += count;
     }
     public float getWeight() {
-        return isEmpty() ? 0f : fruits.get(0).getWeight() * getSizeBox();
+        return fruits.get(0).getWeight() * getSizeBox();
     }
 
-    public Boolean isEmpty() {
-        return this.fruits.size() == 0;
-    }
 
     @Override
     public boolean equals(Object o) {

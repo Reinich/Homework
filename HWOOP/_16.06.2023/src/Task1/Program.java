@@ -10,7 +10,8 @@ public class Program {
 
     /**
      * TODO:
-     *  2**. Добавить новую сущность "Вакансия", компания должна рассылать вакансии.
+     *  2**. Добавить новый класс "Вакансия", JobAgency должна обрабатывать объект вакансия
+     *  и решать какому подписчику рассылать вакансию.
      *  3**. Предусмотреть тип вакансии (enum)
      * @param args
      */
@@ -50,7 +51,6 @@ public class Program {
         google.needEmployee(VacancyType.Cooker);
         System.out.println();
         yandex.needEmployee(VacancyType.TeamLead);
-        jobAgency.removeObserver(sidorov);
     }
 
 }
